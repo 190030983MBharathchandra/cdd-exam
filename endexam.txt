@@ -1,0 +1,35 @@
+# create a formal release
+$ github-release release \
+    --user aktau \
+    --repo gofinance \
+    --tag v0.1.0 \
+    --name "the wolf of source street" \
+    --description "Not a movie, contrary to popular opinion. Still, my first release!" \
+    --pre-release
+
+
+
+$ curl -i -H "Authorization: token TOKEN" \
+     -H "Accept: application/vnd.github.manifold-preview" \
+     "https://uploads.github.com/repos/hubot/singularity/releases/assets/123"
+
+HTTP/1.1 200 OK
+
+{
+  "id": 123,
+...
+}
+
+
+
+$ curl -i -H "Authorization: token TOKEN" \
+     -H "Accept: application/octet-stream" \
+     "https://uploads.github.com/repos/hubot/singularity/releases/assets/123"
+
+
+
+$ curl -H "Authorization: token TOKEN" \
+     -H "Accept: application/vnd.github.manifold-preview" \
+     -H "Content-Type: application/zip" \
+     --data-binary @build/mac/package.zip \
+     "https://uploads.github.com/repos/hubot/singularity/releases/123/assets?name=1.0.0-mac.zip"
